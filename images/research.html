@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AMCL Home</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" 
+    integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-md bg-dark navbar-dark fixed-top">
+        <div class="container">
+          <a href="index" class="navbar-brand text-white">
+            <div class="container">
+                <img src="images/logo2.png" alt="로고" style="height: 40px;" class="logoImg">
+            </div>
+          </a>
+  
+          <button class="navbar-toggler" type="button" 
+            data-bs-toggle="collapse" 
+            data-bs-target="#nav-menu" 
+            aria-controls="nav-menu" 
+            aria-expanded="false" 
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+  
+          <div class="collapse navbar-collapse" id="nav-menu">
+            <ul class="navbar-nav ms-auto my-2">
+              <li class="nav-item"><a class="nav-link text-white fw-bold" href="index">Home</a></li>
+              <li class="nav-item"><a class="nav-link text-white fw-bold" href="people">People</a></li>
+              <li class="nav-item"><a class="nav-link text-white fw-bold" href="research">Research</a></li>
+              <li class="nav-item"><a class="nav-link text-white fw-bold" href="publication">Publication</a></li>
+              <li class="nav-item"><a class="nav-link text-white fw-bold" href="news">News</a></li>              
+            </ul>
+          </div>
+        </div>
+    </nav>
+
+    <section class="mt-5 py-5 px-1">
+      <div class="container px-5 pb-5 mb-5">
+        <h2 class="text-dark fw-bold pb-2">Sound Event Localization and Detection (SELD)</h2>            
+        <div class="card research-hover mx-5">
+            <div class="row">
+                <div class="col-md-6 col-lg-5 col-xl-5 col-xxl-5">
+                    <img src="images/seld.png" class="card-img-top" alt="seld">
+                </div>
+
+                <div class="col-md-6 col-lg-7 col-xl-7 col-xxl-7">
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold">기술의 개요</h5>
+                        <ul>
+                          <li class="card-text py-1 myText">
+                            마이크로폰으로 취득한 음향 신호를 분석하여 음향 객체를 탐지하고 위치를 추정하는 기술입니다.
+                          </li>
+                          <li class="card-text py-1 myText">
+                            음향 객체는 소리가 발생하는 다양한 이벤트(울음, 비명, 차량경적, 총 등)로 구성하며, 시작점(onset)과 끝점(offset)을 함께 추정합니다.
+                          </li>
+                          <li class="card-text py-1 myText">
+                            음향 이벤트만을 감지할 경우, 이미지 처리에서 많이하는 객체 탐지(object detection)과 유사한 형태라 할 수 있습니다. 
+                            단, 입력으로 이미지 정보를 활용하지 않고, 음향 정보를 활용합니다.
+                          </li>
+                          <li class="card-text py-1 myText">
+                            여기에, 음향 이벤트의 위치까지도 추정합니다. 
+                            마이크로폰이 하나가 아니라 여러 채널로 구성되어져 있을 경우, 
+                            음원의 방향에 따라서 채널 간의 강도차(Inter-channel Intensity Difference, IID) 및 시간차(Inter-channel Time Difference, ILD)가 발생합니다.
+                            이러한 채널 간의 차이를 인공지능 기술로 분석하여 음향 이벤트의 위치까지도 추정합니다.
+                          </li>
+
+                          <li class="card-text py-1 myText">
+                            두 개의 tasks(detection and loclalization)을 함께 진행하는 딥러닝 모델을 SELD라 하며, 
+                            다양한 음성 및 오디오 신호처리의 전처리 혹은 어플리케이션으로 활용가능합니다.
+                          </li>
+                      </ul>  
+                      <p class="text-muted">*그림 출처 : DCASE 공식 홈페이지</p>
+                        
+                    </div>
+                </div>
+            </div>                
+            
+        </div>
+      </div>       
+
+
+
+      <div class="container px-5 pb-5 mb-5">
+        <h2 class="text-dark fw-bold pb-2">Voice Conversion</h2>
+        <div class="card research-hover mx-5">
+            <div class="row">
+                <div class="col-md-6 col-lg-5 col-xl-5 col-xxl-5">
+                    <img src="images/vc.png" class="card-img-top" alt="voice_conversion">
+                </div>
+
+                <div class="col-md-6 col-lg-7 col-xl-7 col-xxl-7">
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold">기술의 개요</h5>
+                        <ul>
+                          <li class="card-text py-1 myText">
+                            음색 변환(voice conversion) 기술은 음성에서 발화의 내용과 같은 화자(소스) 독립적인 언어적 정보는 유지한 채, 
+                            음색과 같은 화자(타겟) 종속적인 비언어적 정보를 원하는 정보로 바꾸는 기술을 의미합니다.
+                          </li>
+                          <li class="card-text py-1 myText">
+                            음성 합성(speech synthesis) 시스템이나, 발성 장애를 가진 개인을 위한 음성 보조기, 
+                            음성 데이터 생성과 같은 응용분야 중 개인적 특성을 분영하는 목적으로 활용 가능합니다.                              
+                          </li>
+                          <li class="card-text py-1 myText">
+                            초기의 음색 변환 기술들은 일반적으로 훈련 데이터로 병렬 데이터(parallel data)를 사용하였습니다.
+                            여기서, 병렬 데이터란 원 화자와 특정 화자의 음성 데이터가 동일한 언어적 정보가 쌍으로 구성된 것을 가리킵니다. 
+                            이러한 병렬 데이터는 현실적으로 많은 양의 데이터를 모으는 것에는 한계가 있기 때문에, 현재는 비병렬 데이터(non-parallel data)를 활용한 음색 변환 기술이 많이 연구되고 있습니다.                        
+                          </li>
+                          <li class="card-text py-1 myText">
+                            음색 변환 기술은 이미지 처리에서의 Style Transfer와 매우 유사한 형태를 가집니다. Style Transfer에서의 이미지 정보를 크게 Conent 정보와 Style 정보로 이원화시켜서 생각하는 것처럼,
+                            음색 변환 기술에서도 음성 정보를 언어적(lingustic) 정보와 화자(speaker) 정보로 나누어서 생각할 수 있습니다.                              
+                          </li>
+                          <li class="card-text py-1 myText">
+                            이에 따라, 다양한 생성 모델 기반의 음색 변환 기술들이 연구되고 있으며, 현재에는 diffusion 모델들을 활용하여 음색 변환 기술들이 연구되고 있습니다.
+                          </li>
+                      </ul>                                                       
+
+                        
+                    </div>
+                </div>
+            </div>                
+            
+        </div>
+      </div>    
+      
+      
+
+
+      <div class="container px-5 pb-5 mb-5">
+        <h2 class="text-dark fw-bold pb-2">Machine Translation (Math Word Problem)</h2>
+        <div class="card research-hover mx-5">
+            <div class="row">
+                <div class="col-md-6 col-lg-5 col-xl-5 col-xxl-5">
+                    <img src="images/conformer.png" class="card-img-top" alt="conformer">
+                </div>
+
+                <div class="col-md-6 col-lg-7 col-xl-7 col-xxl-7">
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold">기술의 개요</h5>
+                        <ul>
+                            <li class="card-text py-1 myText">
+                              문장형 수학문제(Math Word Problem, MWP)는 수식과 같은 수학적 언어가 아닌 자연어로 서술된 수학 문제를 의미합니다.
+                              예를 들어서, "사과가 5개가 있었는데, 2개를 먹었다면 몇 개가 남았을까?"와 같이 문장으로 구성된 수학문제를 제시하고, 
+                              인공지능 모델은 단순하게 정답만을 추론하는 것이 아니라, "5 - 2"와 같은 풀이식을 도출합니다.
+                            </li>
+                            <li class="card-text py-1 myText">
+                              주어진 수학문제를 풀어내는 단순 계산문제와 달리 문장형 수학문제에서는 주어진 상황을 이해하고, 이를 토대로 대응하는 풀이식을 세워야 합니다.
+                              이로 인하여 문장형 수학문제 풀이모델은 문제 해결력에 더불어 독해력과 추론력이 요구된다고 볼 수 있습니다.
+                            </li>
+                            <li class="card-text py-1 myText">
+                              우리는 기계 번역(machine translation) 구조 기반의 문장형 수학문제 풀이가 가능한 인공지능 모델을 연구하고 있습니다.
+                              다양한 기계 번역 구조들이 연구되고 있지만, 
+                              현재 많이 활용되고 좋은 성능을 보이고 있는 트랜스포머(Transformer) 및 컨포머(Conforemer) 기반으로 문장형 수학문제 풀이 모델을 연구하고 있습니다.                              
+                            </li>
+                            <li class="card-text py-1 myText">
+                              Conformer는 입력 데이터의 지역적 정보와 전역적 정보를 유기적으로 활용하기 위해 합성곱 신경망과 Transformer를 결합한 모델이라고 볼 수 있습니다. 
+                              현재 Conformer 모델은 음성 인식과 화자 분리와 같은 음성 분야에서 Transformer보다 뛰어난 성능을 보이며 활발히 연구되고 있습니다.                              
+                            </li>
+
+                            <li class="card-text py-1 myText">
+                              Conformer의 데이터 특징 정보 활용 방식은 자연어 처리에서도 문장 내 단어 간의 대응 관계 및 특징 학습에 효과를 보일 수 있을 것으로 예상되며, 
+                              우리는 이러한 Conformer 모델 기반의 문장형 수학문제 풀이 모델을 개발하고 있습니다.
+                            </li>
+                        </ul>                            
+
+                        <p class="text-muted">*그림 출처 : 콘포머 기반 한국어 음성인식 논문</p>
+                    </div>
+                </div>
+            </div>                
+            
+        </div>
+      </div> 
+      
+      
+
+
+  </section>
+
+
+
+
+
+
+
+    <footer class="bg-dark text-white">
+      <div class="container text-center">
+        <p class="py-4 mb-0">Copyright 2023 Designed by <a href="index" class="link-warning text-decoration-none">Advanced Multimedia Computing Lab.</a></p>
+      </div>      
+
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" 
+    integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+</body>
