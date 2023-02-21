@@ -46,3 +46,19 @@
 .research-hover{    
     filter: grayscale(20%)
 }
+
+.text-h2-responsive {
+    font-size: calc(100% + 0.7vw + 0.7vh);
+}
+
+.text-h4-responsive {
+    font-size: calc(90% + 0.5vw + 0.5vh);
+}
+
+.text-h5-responsive {
+    font-size: calc(85% + 0.35vw + 0.35vh);
+}
+
+.text-p-responsive {
+    font-size: calc(70% + 0.25vw + 0.25vh);
+}
