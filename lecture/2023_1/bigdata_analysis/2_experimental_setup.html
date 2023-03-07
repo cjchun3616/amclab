@@ -131,10 +131,10 @@
 drive.mount(<span class="hljs-string">&#x27;/content/gdrive&#x27;</span>, force_remount=<span class="hljs-literal">True</span>)
 </code></pre>
 <ul>
-<li><code>/content/gdrive</code>가 최상위 디렉토리가 됨</li>
+<li><code>/content/gdrive/My Drive</code>가 최상위 디렉토리가 됨</li>
 <li>구글 드라이브에 &quot;csv&quot; 폴더를 만들고, &quot;BostonHousing.csv&quot; 파일을 업로드하였다면,
 <ul>
-<li><span style="color:red"><strong><code>/content/gdrive/csv/BostonHousing.csv</code>가 절대경로가 됨</strong></span></li>
+<li><span style="color:red"><strong><code>/content/gdrive/My Drive/csv/BostonHousing.csv</code>가 절대경로</strong></span></li>
 </ul>
 </li>
 </ul>
@@ -149,7 +149,7 @@ drive.mount(<span class="hljs-string">&#x27;/content/gdrive&#x27;</span>, force_
 
 drive.mount(<span class="hljs-string">&#x27;/content/gdrive&#x27;</span>, force_remount=<span class="hljs-literal">True</span>)
 
-filepath = <span class="hljs-string">&#x27;/content/gdrive&#x27;</span> + <span class="hljs-string">&#x27;/to_your_path/&#x27;</span>
+filepath = <span class="hljs-string">&#x27;/content/gdrive/My Drive/&#x27;</span> + <span class="hljs-string">&#x27;to_your_path/&#x27;</span>
 <span class="hljs-comment"># 예시 : filepath = &#x27;/content/gdrive/csv/&#x27;</span>
 
 df_data = pd.read_csv(filepath + <span class="hljs-string">&#x27;BostonHousing.csv&#x27;</span>)
