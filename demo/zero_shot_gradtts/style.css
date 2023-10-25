@@ -42,3 +42,21 @@ img {
     margin-top: 50px;
     margin-bottom: 50px;
 }
+
+.audid-content{
+    display: flex;
+}
+
+.text-content{
+    width:25%;
+    margin-bottom: 30px;
+}
+
+.text-content > p{
+    height: 65%;
+    margin-right: 20px;
+}
+
+.text-content > audio{
+    width:80%;
+}
