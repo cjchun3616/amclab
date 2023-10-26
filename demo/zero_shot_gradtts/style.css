@@ -18,6 +18,29 @@ img {
     }
 }
 
+audio {
+    width:100%;
+}
+
+table{
+    border-collapse: collapse;
+    border-top: 1px solid #444444;
+}
+
+thead {
+    border-bottom: 3px solid #444444;
+}
+
+
+th, td{
+    padding: 20px;
+    border-bottom: 1px solid #444444;
+    border-left: 1px solid #444444;
+}
+th:first-child, td:first-child {
+    border-left: none;
+}
+
 .out_content{
     display: flex;
     justify-content:center;
@@ -43,20 +66,16 @@ img {
     margin-bottom: 50px;
 }
 
-.audid-content{
-    display: flex;
+.text-content {
+    width: 35%
 }
 
-.text-content{
-    width:25%;
+.audio-content {
+    width: 20%
+}
+
+.explain {
+    margin-top: 30px;
     margin-bottom: 30px;
 }
 
-.text-content > p{
-    height: 65%;
-    margin-right: 20px;
-}
-
-.text-content > audio{
-    width:80%;
-}
