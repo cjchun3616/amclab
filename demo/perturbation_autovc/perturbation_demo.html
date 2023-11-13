@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="style.css">
+    <title>Audio Demo</title>
+    <style>
+    body {
+      margin: 0;
+      padding: 0;
+      width: 50%; /* 원하는 폭(px)으로 설정 */
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .centered-image {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    th, td {
+        padding: 8px;
+        text-align: left;
+        border: none; /* 표의 셀 모서리 선 스타일링 */
+        vertical-align: top;
+        border-bottom: 2px solid #dddddd
+    }
+    th {
+        font-size: 18px; /* 글자 크기를 키웁니다. */
+        font-weight: bold; /* 글자를 볼드체로 만듭니다. */
+        border-top: 2px solid #dddddd;
+        border-bottom: 3px solid #dddddd;
+    }
+    .content-spacing {
+      margin-top: 100px; /* 다음 내용과의 여백 조정 */
+    }
+  </style>
+</head>
+
+<body>
+    <div class=out_content>
+        <div class="main">
+            <h1>Perturbation AUTOVC: Voice Conversion from Perturbation and Autoencoder Loss</h1>
+            <hr>
+            <h2>Abstract</h2>
+            <p>AUTOVC is a voice-conversion method that performs self-reconstruction using an autoencoder structure for zero-shot voice conversion.
+                AUTOVC has the advantage of being easy and simple to learn because it only uses the autoencoder loss for learning.
+                However, it performs voice conversion by disentangling speech information from speakers and linguistic information by adjusting the bottleneck dimension;
+                this requires very fine tuning of the bottleneck dimension and involves a tradeoff between speech quality and speaker similarity.
+                To address these issues, neural analysis and synthesis (NANSY)—a fully self-supervised learning system that uses perturbations to extract speech features—is proposed.
+                NANSY solves the problem of the adjustment of the bottleneck dimension by utilizing perturbation and exhibits high-reconstruction performance.
+                In this study, we propose perturbation AUTOVC, a voice conversion method that utilizes the structure of AUTOVC and the perturbation of NANSY.
+                The proposed method applies perturbations to speech signals (such as NANSY signals) to solve the problem of the voice conversion method using bottleneck dimensions.
+                Perturbation is applied to remove the speaker-dependent information present in the speech, leaving only the linguistic information,
+                which is then passed through a content encoder and modeled as a content embedding containing only the linguistic information.
+                To obtain speaker information, we used x-vectors, which are extensively used in pretrained speaker recognition.
+                The concatenated linguistic and speaker information extracted from the encoder and additional energy information is used as input to the decoder to perform self-reconstruction.
+                Similar to AUTOVC, it is easy and simple to learn using only the autoencoder loss. For the evaluation,
+                we measured three objective evaluation metrics: character error rate (%), cosine similarity, and short-time objective intelligibility,
+                as well as a subjective evaluation metric: mean opinion score.
+                The experimental results demonstrate that our proposed method outperforms other voice conversion techniques and demonstrated robust performance in zero-shot conversion.</p>
+            
+            <h2>Perturbation AUTOVC architecture.</h2>
+            <img src="pic/Perturbation_architecture.png" style="max-width: 80%; height: auto;" alt="fig1" class="centered-image">
+
+            <div class="content-spacing"></div>
+
+            <p class="em"><b>The audio samples below are generated using the model proposed in this paper.</b></p>
+
+            <div class="seen_speaker">
+                <h2>Sample for Seen Speaker - VCTK</h2>
+                <div class="table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th scope="col">Source</th>
+                                <th scope="col">Target</th>
+                                <th scope="col">Conversion</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr>
+                                <td> <b>p228_051</b>
+                                    <audio controls preload="none">
+                                        <source src="audio/VCTK/source/228_051.wav" type="audio/wav">
+                                    </audio>
+                                </td>
+                                <td> <b>p261_055</b>
+                                    <audio controls preload="none">
+                                        <source src="audio/VCTK/target/261_055.wav" type="audio/wav">
+                                    </audio>
+                                </td>
+                                <td> <b>Perturbation_AUTOVC(Proposed)</b>
+                                    <audio controls preload="none">
+                                        <source src="audio/VCTK/perturbation_autovc/228_to_261_FF.wav" type="audio/wav">
+                                    </audio> <b>AGAIN-VC</b>
+                                    <audio controls preload="none">
+                                        <source src="audio/VCTK/AGAIN-VC/228_to_261_FF.wav" type="audio/wav">
+                                    </audio>
+                                </td>
+                                <td> <b>AUTOVC</b>
+                                    <audio controls preload="none">
+                                        <source src="audio/VCTK/AUTOVC/228_to_261_FF.wav" type="audio/wav">
+                                    </audio> <b>VQMIVC</b>
+                                    <audio controls preload="none">
+                                        <source src="audio/VCTK/VQMIVC/228_to_261_FF.wav" type="audio/wav">
+                                    </audio> <b>PPG-VC</b>
+                                    <audio controls preload="none">
+                                        <source src="audio/VCTK/PPG-VC/228_to_261_FF.wav" type="audio/wav">
+                                    </audio>
+                                </td>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td> <b>p249_039</b>
+                                    <audio controls preload="none">
+                                        <source src="audio/VCTK/source/249_039.wav" type="audio/wav">
+                                    </audio>
+                                </td>
+                                <td> <b>p256_031</b>
+                                    <audio controls preload="none">
+                                        <source src="audio/VCTK/target/256_031.wav" type="audio/wav">
+                                    </audio>
+                                </td>
+                                <td> <b>Perturbation_AUTOVC(Proposed)</b>
+                                    <audio controls preload="none">
+                                        <source src="audio/VCTK/perturbation_autovc/249_to_256_FM.wav" type="audio/wav">
+                                    </audio> <b>AGAIN-VC</b>
+                                    <audio controls preload="none">
+                                        <source src="audio/VCTK/AGAIN-VC/249_to_256_FM.wav" type="audio/wav">
+                                    </audio>
+                                </td>
+                                <td> <b>AUTOVC</b>
+                                    <audio controls preload="none">
+                                        <source src="audio/VCTK/AUTOVC/249_to_256_FM.wav" type="audio/wav">
+                                    </audio> <b>VQMIVC</b>
+                                    <audio controls preload="none">
+                                        <source src="audio/VCTK/VQMIVC/249_to_256_FM.wav" type="audio/wav">
+                                    </audio> <b>PPG-VC</b>
+                                    <audio controls preload="none">
+                                        <source src="audio/VCTK/PPG-VC/249_to_256_FM.wav" type="audio/wav">
+                                    </audio>
+                                </td>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td> <b>p254_031</b>
+                                    <audio controls preload="none">
+                                        <source src="audio/VCTK/source/254_031.wav" type="audio/wav">
+                                    </audio>
+                                </td>
+                                <td> <b>p256_035</b>
+                                    <audio controls preload="none">
+                                        <source src="audio/VCTK/target/256_035.wav" type="audio/wav">
+                                    </audio>
+                                </td>
+                                <td> <b>Perturbation_AUTOVC(Proposed)</b>
+                                    <audio controls preload="none">
+                                        <source src="audio/VCTK/perturbation_autovc/254_to_256_MM.wav" type="audio/wav">
+                                    </audio> <b>AGAIN-VC</b>
+                                    <audio controls preload="none">
+                                        <source src="audio/VCTK/AGAIN-VC/254_to_256_MM.wav" type="audio/wav">
+                                    </audio>
+                                <td> <b>AUTOVC</b>
+                                    <audio controls preload="none">
+                                        <source src="audio/VCTK/AUTOVC/254_to_256_MM.wav" type="audio/wav">
+                                    </audio> <b>VQMIVC</b>
+                                    <audio controls preload="none">
+                                        <source src="audio/VCTK/VQMIVC/254_to_256_MM.wav" type="audio/wav">
+                                    </audio> <b>PPG-VC</b>
+                                    <audio controls preload="none">
+                                        <source src="audio/VCTK/PPG-VC/254_to_256_MM.wav" type="audio/wav">
+                                    </audio>
+                                </td>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td> <b>p272_056</b>
+                                    <audio controls preload="none">
+                                        <source src="audio/VCTK/source/272_056.wav" type="audio/wav">
+                                    </audio>
+                                </td>
+                                <td> <b>p261_051</b>
+                                    <audio controls preload="none">
+                                        <source src="audio/VCTK/target/261_051.wav" type="audio/wav">
+                                    </audio>
+                                </td>
+                                <td> <b>Perturbation_AUTOVC(Proposed)</b>
+                                    <audio controls preload="none">
+                                        <source src="audio/VCTK/perturbation_autovc/272_to_261_MF.wav" type="audio/wav">
+                                    </audio> <b>AGAIN-VC</b>
+                                    <audio controls preload="none">
+                                        <source src="audio/VCTK/AGAIN-VC/272_to_261_MF.wav" type="audio/wav">
+                                    </audio>
+                                </td>
+                                <td> <b>AUTOVC</b>
+                                    <audio controls preload="none">
+                                        <source src="audio/VCTK/AUTOVC/272_to_261_MF.wav" type="audio/wav">
+                                    </audio> <b>VQMIVC</b>
+                                    <audio controls preload="none">
+                                        <source src="audio/VCTK/VQMIVC/272_to_261_MF.wav" type="audio/wav">
+                                    </audio> <b>PPG-VC</b>
+                                    <audio controls preload="none">
+                                        <source src="audio/VCTK/PPG-VC/272_to_261_MF.wav" type="audio/wav">
+                                    </audio>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                <div class="content-spacing"></div>
+
+            <div class="unseen_speaker">
+                <h2>Sample for Unseen Speaker - LibriTTS</h2>
+                <div class="table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th scope="col">Source</th>
+                                <th scope="col">Target</th>
+                                <th scope="col">Conversion</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr>
+                                <td> <b>226</b>
+                                    <audio controls preload="none">
+                                        <source src="audio/LibriTTS/source/226_122538_000009_000000.wav" type="audio/wav">
+                                    </audio>
+                                </td>
+                                <td> <b>103</b>
+                                    <audio controls preload="none">
+                                        <source src="audio/LibriTTS/target/103_1241_000060_000003.wav" type="audio/wav">
+                                    </audio>
+                                </td>
+                                <td> <b>Perturbation_AUTOVC(Proposed)</b>
+                                    <audio controls preload="none">
+                                        <source src="audio/LibriTTS/perturbation_autovc/226_to_103_FF.wav" type="audio/wav">
+                                    </audio> <b>AGAIN-VC</b>
+                                    <audio controls preload="none">
+                                        <source src="audio/LibriTTS/AGAIN-VC/226_to_103_FF.wav" type="audio/wav">
+                                    </audio>
+                                </td>
+                                <td> <b>AUTOVC</b>
+                                    <audio controls preload="none">
+                                        <source src="audio/LibriTTS/AUTOVC/226_to_103_FF.wav" type="audio/wav">
+                                    </audio> <b>VQMIVC</b>
+                                    <audio controls preload="none">
+                                        <source src="audio/LibriTTs/VQMIVC/226_to_103_FF.wav" type="audio/wav">
+                                    </audio>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td> <b>150</b>
+                                    <audio controls preload="none">
+                                        <source src="audio/LibriTTS/source/150_126107_000012_000000.wav" type="audio/wav">
+                                    </audio>
+                                </td>
+                                <td> <b>196</b>
+                                    <audio controls preload="none">
+                                        <source src="audio/LibriTTS/target/196_122150_000009_000003.wav" type="audio/wav">
+                                    </audio>
+                                </td>
+                                <td> <b>Perturbation_AUTOVC(Proposed)</b>
+                                    <audio controls preload="none">
+                                        <source src="audio/LibriTTS/perturbation_autovc/150_to_196_FM.wav" type="audio/wav">
+                                    </audio> <b>AGAIN-VC</b>
+                                    <audio controls preload="none">
+                                        <source src="audio/LibriTTS/AGAIN-VC/150_to_196_FM.wav" type="audio/wav">
+                                    </audio>
+                                </td>
+                                <td> <b>AUTOVC</b>
+                                    <audio controls preload="none">
+                                        <source src="audio/LibriTTS/AUTOVC/150_to_196_FM.wav" type="audio/wav">
+                                    </audio> <b>VQMIVC</b>
+                                    <audio controls preload="none">
+                                        <source src="audio/LibriTTS/VQMIVC/150_to_196_FM.wav" type="audio/wav">
+                                    </audio>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td> <b>8770</b>
+                                    <audio controls preload="none">
+                                        <source src="audio/LibriTTS/source/8770_295465_000023_000000.wav" type="audio/wav">
+                                    </audio>
+                                </td>
+                                <td> <b>8838</b>
+                                    <audio controls preload="none">
+                                        <source src="audio/LibriTTs/target/8838_298546_000051_000000.wav" type="audio/wav">
+                                    </audio>
+                                </td>
+                                <td> <b>Perturbation_AUTOVC(Proposed)</b>
+                                    <audio controls preload="none">
+                                        <source src="audio/LibriTTS/perturbation_autovc/8770_to_8838_MM.wav" type="audio/wav">
+                                    </audio> <b>AGAIN-VC</b>
+                                    <audio controls preload="none">
+                                        <source src="audio/LibriTTS/AGAIN-VC/8770_to_8838_MM.wav" type="audio/wav">
+                                    </audio>
+                                </td>
+                                <td> <b>AUTOVC</b>
+                                    <audio controls preload="none">
+                                        <source src="audio/LibriTTS/AUTOVC/8770_to_8838_MM.wav" type="audio/wav">
+                                    </audio> <b>VQMIVC</b>
+                                    <audio controls preload="none">
+                                        <source src="audio/LibriTTS/VQMIVC/8770_to_8838_MM.wav" type="audio/wav">
+                                    </audio>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td> <b>8747</b>
+                                    <audio controls preload="none">
+                                        <source src="audio/LibriTTS/source/8747_293952_000139_000001.wav" type="audio/wav">
+                                    </audio>
+                                </td>
+                                <td> <b>4640</b>
+                                    <audio controls preload="none">
+                                        <source src="audio/LibriTTS/target/4640_19188_000048_000002.wav" type="audio/wav">
+                                    </audio>
+                                </td>
+                                <td> <b>Perturbation_AUTOVC(Proposed)</b>
+                                    <audio controls preload="none">
+                                        <source src="audio/LibriTTS/perturbation_autovc/8747_to_4640_MF.wav" type="audio/wav">
+                                    </audio> <b>AGAIN-VC</b>
+                                    <audio controls preload="none">
+                                        <source src="audio/LibriTTS/AGAIN-VC/8747_to_4640_MF.wav" type="audio/wav">
+                                    </audio>
+                                </td>
+                                <td> <b>AUTOVC</b>
+                                    <audio controls preload="none">
+                                        <source src="audio/LibriTTS/AUTOVC/8747_to_4640_MF.wav" type="audio/wav">
+                                    </audio> <b>VQMIVC</b>
+                                    <audio controls preload="none">
+                                        <source src="audio/LibriTTS/VQMIVC/8747_to_4640_MF.wav" type="audio/wav">
+                                    </audio>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    </div>
+            </div>
+
+            <div class="source">
+                <h2>Compared systems</h2>
+                <hr>
+                <p>The pre-trained model for sample generation is available at the link below.</p>
+                <p><a href="https://github.com/KimythAnly/AGAIN-VC">AGAIN-VC</a></p>
+                <p><a href="https://github.com/Wendison/VQMIVC">VQMIVC</a></p>
+                <p><a href="https://github.com/liusongxiang/ppg-vc">PPG-VC</a></p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
