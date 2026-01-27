@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Publication - AMCL</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Noto+Sans+KR:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icons@6.6.6/css/flag-icons.min.css">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-dark: #0f172a;
+            --card-bg: #1e293b;
+            --accent-color: #6366f1;
+            --text-main: #f8fafc;
+            --text-sub: #94a3b8;
+        }
+
+        body {
+            font-family: 'Inter', 'Noto Sans KR', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navbar & Dropdown (Common) */
+        .navbar {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 1rem 0;
+        }
+
+        .navbar-brand img {
+            height: 45px;
+            transition: transform 0.3s;
+        }
+
+        .navbar-brand:hover img {
+            transform: scale(1.05);
+        }
+
+        .nav-link {
+            color: var(--text-sub) !important;
+            font-weight: 500;
+            margin-left: 1.5rem;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--text-main) !important;
+        }
+
+        .lang-dropdown-menu {
+            background-color: rgba(30, 41, 59, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            min-width: 120px;
+        }
+
+        .lang-dropdown-item {
+            color: var(--text-sub);
+            padding: 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            transition: all 0.2s;
+        }
+
+        .lang-dropdown-item:hover {
+            background-color: rgba(99, 102, 241, 0.1);
+            color: white;
+        }
+
+        .fi {
+            font-size: 1.1em;
+            line-height: 1em;
+        }
+
+        /* Page Header */
+        .page-header {
+            padding: 4rem 0 2rem;
+            text-align: center;
+            background: radial-gradient(circle at top center, rgba(99, 102, 241, 0.1), transparent 60%);
+        }
+
+        .page-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #fff 0%, #818cf8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        /* Glass Card */
+        .glass-card {
+            background: rgba(30, 41, 59, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 1rem;
+            padding: 2.5rem;
+            height: 100%;
+            margin-bottom: 3rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        /* Section Titles inside Card */
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid rgba(99, 102, 241, 0.3);
+            color: white;
+            display: flex;
+            align-items: center;
+        }
+
+        .card-title i {
+            margin-right: 0.75rem;
+            color: var(--accent-color);
+        }
+
+        /* Publication List Styling */
+        ol.pub-list {
+            padding-left: 1rem;
+            margin: 0;
+        }
+
+        ol.pub-list li {
+            margin-bottom: 1.5rem;
+            color: var(--text-sub);
+            font-size: 1rem;
+            text-align: justify;
+            padding-left: 0.5rem;
+        }
+
+        ol.pub-list li::marker {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        ol.pub-list li strong {
+            color: #fff;
+            /* Highlight author name */
+            font-weight: 600;
+        }
+
+        /* Paper Link Icon */
+        .paper-link {
+            color: var(--accent-color);
+            margin-left: 0.5rem;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+            text-decoration: none;
+        }
+
+        .paper-link:hover {
+            color: #fff;
+            transform: scale(1.1);
+        }
+
+        footer {
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 3rem 0;
+            margin-top: 5rem;
+            color: var(--text-sub);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index_en.html">
+                <img src="images/logo2.png" alt="AMCL Logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav align-items-lg-center">
+                    <li class="nav-item"><a class="nav-link" href="index_en.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="people_en.html">People</a></li>
+                    <li class="nav-item"><a class="nav-link" href="research_en.html">Research</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="publication_en.html">Publication</a></li>
+                    <li class="nav-item"><a class="nav-link" href="news_en.html">News</a></li>
+
+                    <li class="nav-item dropdown ms-lg-3">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            <span class="fi fi-us me-2"></span> EN
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end lang-dropdown-menu">
+                            <li><a class="dropdown-item lang-dropdown-item" href="publication.html"><span
+                                        class="fi fi-kr me-2"></span> Korean</a></li>
+                            <li><a class="dropdown-item lang-dropdown-item" href="publication_en.html"><span
+                                        class="fi fi-us me-2"></span> English</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="page-header container">
+        <h1 class="page-title">Publication</h1>
+        <p class="text-secondary">Research Papers & Conference Proceedings</p>
+    </header>
+
+    <main class="container mb-5">
+
+        <div class="glass-card">
+            <h2 class="card-title"><i class="fas fa-globe-americas"></i> International Journals</h2>
+            <ol reversed class="pub-list">
+                <li>
+                    Y. Pak, Y. Shin, Y. G. Kim, and <strong>C. Chun<sup>*</sup></strong>,
+                    "Adversarial representation learning for underwater acoustic noise suppression in LOFARgram space,"
+                    <em>IEEE Access</em>, Jan. 2026.
+                </li>
+                <li>
+                    N. Kim, M. Kim, C. Lee, <strong>C. Chun</strong>, and H. K. Kim<sup>*</sup>,
+                    "Novelty detection in underwater acoustic environments for maritime surveillance using an
+                    out-of-distribution detector for neural networks,"
+                    <em>Sensors</em>, 26(1), 37, Dec. 2025.
+                    <a href="https://www.mdpi.com/1424-8220/26/1/37" target="_blank" class="paper-link"
+                        title="View Paper"><i class="fas fa-external-link-alt"></i></a>
+                </li>
+                <li>
+                    R. T. Rodoshi, R. A. Nazib, <strong>C. Chun</strong>, and W. Choi<sup>*</sup>,
+                    "Combined multi-agent and centralized resource allocation in cloud radio access networks,"
+                    <em>IEEE Access</em>, vol. 13, May. 2025.
+                    <a href="https://ieeexplore.ieee.org/document/10982217" target="_blank" class="paper-link"><i
+                            class="fas fa-external-link-alt"></i></a>
+                </li>
+                <li>
+                    P. Tarafder<sup>+</sup>, <strong>C. Chun<sup>+</sup></strong>, A. Ullah, Y. Kim, and W.
+                    Choi<sup>*</sup>,
+                    "Channel estimation in 5G-and-beyond wireless communication: A comprehensive survey,"
+                    <em>Electronics</em>, 14(4), 750, Feb. 2025.
+                    <a href="https://www.mdpi.com/2079-9292/14/4/750" target="_blank" class="paper-link"><i
+                            class="fas fa-external-link-alt"></i></a>
+                    <br><sup>+</sup>These authors contributed equally to this work.
+                </li>
+                <li>
+                    C. Go, Y. H. Lee, T. Kim, N. I. Park, and <strong>C. Chun<sup>*</sup></strong>,
+                    "Contrastive speaker representation learning with hard negative sampling for speaker recognition,"
+                    <em>Sensors</em>, 24(19), 6213, Sep. 2024.
+                    <a href="https://www.mdpi.com/1424-8220/24/19/6213" target="_blank" class="paper-link"
+                        title="View Paper"><i class="fas fa-external-link-alt"></i></a>
+                </li>
+                <li>
+                    N. I. Park, J. W. Lee, S. H. Lim, O.-Y. Jeon, J.-H. Kim, J. S. Byun, <strong>C. Chun</strong>, J.-H.
+                    Lee<sup>*</sup>,
+                    "Advanced forensic method to authenticate audio files from Tizen-based Samsung Galaxy Watches,"
+                    <em>Forensic Science International: Digital Investigation</em>, vol. 48, 301697, Mar. 2024.
+                    <a href="https://www.sciencedirect.com/science/article/pii/S2666281724000064" target="_blank"
+                        class="paper-link"><i class="fas fa-external-link-alt"></i></a>
+                </li>
+                <li>
+                    <strong>C. Chun</strong>, H. J. Park, and M. B. Seo<sup>*</sup>,
+                    "Static sound event localization and detection using bipartite matching loss for emergency
+                    monitoring,"
+                    <em>Applied Sciences</em>, 14(4), 1539, Feb. 2024.
+                    <a href="https://www.mdpi.com/2076-3417/14/4/1539" target="_blank" class="paper-link"><i
+                            class="fas fa-external-link-alt"></i></a>
+                </li>
+                <li>
+                    H.-Y. Park, Y. H. Lee, and <strong>C. Chun<sup>*</sup></strong>,
+                    "Perturbation AUTOVC: Voice conversion from perturbation and autoencoder loss,"
+                    <em>IEEE Access</em>, vol. 11, Dec. 2023.
+                    <a href="https://ieeexplore.ieee.org/document/10353951" target="_blank" class="paper-link"><i
+                            class="fas fa-external-link-alt"></i></a>
+                </li>
+                <li>
+                    C.-W. Bang and <strong>C. Chun<sup>*</sup></strong>,
+                    "Effective zero-shot multi-speaker text-to-speech technique using information perturbation and a
+                    speaker encoder,"
+                    <em>Sensors</em>, 23(23), 9591, Dec. 2023.
+                    <a href="https://www.mdpi.com/1424-8220/23/23/9591" target="_blank" class="paper-link"><i
+                            class="fas fa-external-link-alt"></i></a>
+                </li>
+                <li>
+                    S. Rezwan, <strong>C. Chun</strong>, W. Choi<sup>*</sup>,
+                    "Federated deep reinforcement learning-based multi-UAV navigation for heterogeneous NOMA systems,"
+                    <em>IEEE Sensors Journal</em>, vol. 23, no. 23, Oct. 2023.
+                    <a href="https://ieeexplore.ieee.org/document/10295384" target="_blank" class="paper-link"><i
+                            class="fas fa-external-link-alt"></i></a>
+                </li>
+                <li>
+                    Y. Shin, Y. G. Kim, C.-H. Choi, D.-J. Kim, and <strong>C. Chun<sup>*</sup></strong>,
+                    "SELD U-Net: Joint optimization of sound event localization and detection with noise reduction,"
+                    <em>IEEE Access</em>, vol. 11, Sep. 2023.
+                    <a href="https://ieeexplore.ieee.org/document/10261207" target="_blank" class="paper-link"><i
+                            class="fas fa-external-link-alt"></i></a>
+                </li>
+                <li>
+                    K. Yu, H. Kim, J. Kim, <strong>C. Chun</strong>, and P. Kim<sup>*</sup>,
+                    "A study on webtoon generation using CLIP and diffusion models,"
+                    <em>Electronics</em>, 12(18), 3983, Sep. 2023.
+                    <a href="https://www.mdpi.com/2079-9292/12/18/3983" target="_blank" class="paper-link"><i
+                            class="fas fa-external-link-alt"></i></a>
+                </li>
+                <li>
+                    C. Go, N. I. Park, O.-Y. Jeon, and <strong>C. Chun<sup>*</sup></strong>,
+                    "A pre-training framework based on multi-order acoustic simulation for replay voice spoofing
+                    detection,"
+                    <em>Sensors</em>, 23(16), 7280, Aug. 2023.
+                    <a href="https://www.mdpi.com/1424-8220/23/16/7280" target="_blank" class="paper-link"><i
+                            class="fas fa-external-link-alt"></i></a>
+                </li>
+                <li>
+                    K. Yu, H. Kim, J. Kim, <strong>C. Chun</strong>, and P. Kim<sup>*</sup>,
+                    "A study on generating webtoons using multilingual text-to-image models,"
+                    <em>Applied Sciences</em>, 13(12), 7278, June 2023.
+                    <a href="https://www.mdpi.com/2076-3417/13/12/7278" target="_blank" class="paper-link"><i
+                            class="fas fa-external-link-alt"></i></a>
+                </li>
+                <li>
+                    K. Kim, <strong>C. Chun</strong>, and S.-Y. Moon<sup>*</sup>,
+                    "Conformer-based dental AI patient clinical diagnosis simulation using Korean synthetic data
+                    generator for multiple standardized patient scenarios,"
+                    <em>Bioengineering</em>, 10(5), 615, May 2023.
+                    <a href="https://www.mdpi.com/2306-5354/10/5/615" target="_blank" class="paper-link"><i
+                            class="fas fa-external-link-alt"></i></a>
+                </li>
+                <li>
+                    Y. Shin and <strong>C. Chun<sup>*</sup></strong>,
+                    "Sound event localization and detection using imbalanced real and synthetic data via
+                    multi-generator,"
+                    <em>Sensors</em>, 23(7), 3398, Mar. 2023.
+                    <a href="https://www.mdpi.com/1424-8220/23/7/3398" target="_blank" class="paper-link"><i
+                            class="fas fa-external-link-alt"></i></a>
+                </li>
+                <li>
+                    N. I. Park, S. H. Lim, J. S. Byun, J.-H. Kim, J. W. Lee, <strong>C. Chun</strong>, Y. Kim, and O.-Y.
+                    Jeon<sup>*</sup>,
+                    "Forensic authentication method for audio recordings generated by voice recorder application on
+                    Samsung Galaxy Watch4 series,"
+                    <em>Journal of Forensic Sciences</em>, vol. 68, no. 1, Oct. 2022.
+                    <a href="https://onlinelibrary.wiley.com/doi/abs/10.1111/1556-4029.15158" target="_blank"
+                        class="paper-link"><i class="fas fa-external-link-alt"></i></a>
+                </li>
+                <li>
+                    K. Kim and <strong>C. Chun<sup>*</sup></strong>,
+                    "Synthetic data generator for solving Korean arithmetic word problem,"
+                    <em>Mathematics</em>, 10(19), 3525, Sep. 2022.
+                    <a href="https://www.mdpi.com/2227-7390/10/19/3525" target="_blank" class="paper-link"><i
+                            class="fas fa-external-link-alt"></i></a>
+                </li>
+                <li>
+                    Y. Jung<sup>*</sup>, T. Kang, and <strong>C. Chun</strong>, "Anomaly analysis on indoor office
+                    spaces for facility management using deep learning methods,"
+                    <em>Journal of Building Engineering</em>, vol. 43, 103139, Nov. 2021.
+                    <a href="https://www.sciencedirect.com/science/article/pii/S2352710221009979" target="_blank"
+                        class="paper-link"><i class="fas fa-external-link-alt"></i></a>
+                </li>
+                <li>
+                    T. Lee, Y. Yoon, <strong>C. Chun</strong>, and S. Ryu<sup>*</sup>,
+                    "CNN-based road-surface crack detection model that responds to brightness changes,"
+                    <em>Electronics</em>, 10(12), 1402, June 2021.
+                    <a href="https://www.mdpi.com/2079-9292/10/12/1402" target="_blank" class="paper-link"><i
+                            class="fas fa-external-link-alt"></i></a>
+                </li>
+                <li>
+                    T. Lee, <strong>C. Chun</strong>, and S.-K. Ryu<sup>*</sup>,
+                    "Detection of road-surface anomalies using a smartphone camera and accelerometer,"
+                    <em>Sensors</em>, 21(2), 561, Jan. 2021.
+                    <a href="https://www.mdpi.com/1424-8220/21/2/561" target="_blank" class="paper-link"><i
+                            class="fas fa-external-link-alt"></i></a>
+                </li>
+                <li>
+                    <strong>C. Chun</strong>, T. Lee, S. Kwon, and S.-K. Ryu<sup>*</sup>,
+                    "Classification and segmentation of longitudinal road marking using convolutional neural networks
+                    for dynamic retroreflection estimation,"
+                    <em>Sensors</em>, 20(19), 5560, Sep. 2020.
+                    <a href="https://www.mdpi.com/1424-8220/20/19/5560" target="_blank" class="paper-link"><i
+                            class="fas fa-external-link-alt"></i></a>
+                </li>
+                <li>
+                    <strong>C. Chun</strong>, K. M. Jeon, and W. Choi<sup>*</sup>,
+                    "Configuration-invariant sound localization technique using azimuth-frequency representation and
+                    convolutional neural networks,"
+                    <em>Sensors</em>, 20(13), 3768, June 2020.
+                    <a href="https://www.mdpi.com/1424-8220/20/13/3768" target="_blank" class="paper-link"><i
+                            class="fas fa-external-link-alt"></i></a>
+                </li>
+                <li>
+                    <strong>C. Chun</strong> and S.-K. Ryu<sup>*</sup>,
+                    "Road surface damage detection using fully convolutional neural networks and semi-supervised
+                    learning,"
+                    <em>Sensors</em>, 19(24), 5501, Dec. 2019.
+                    <a href="https://www.mdpi.com/1424-8220/19/24/5501" target="_blank" class="paper-link"><i
+                            class="fas fa-external-link-alt"></i></a>
+                </li>
+                <li>
+                    T. Kim, <strong>C. Chun</strong>, and W. Choi<sup>*</sup>,
+                    "Optimal user association strategy for large-scale IoT sensor networks with mobility on cloud RANs,"
+                    <em>Sensors</em>, 19(20), 4415, Oct. 2019.
+                    <a href="https://www.mdpi.com/1424-8220/19/20/4415" target="_blank" class="paper-link"><i
+                            class="fas fa-external-link-alt"></i></a>
+                </li>
+                <li>
+                    K. M. Jeon, <strong>C. J. Chun</strong>, H. K. Kim<sup>*</sup>, and M. J. Lee,
+                    "User-aware audio marker using low frequency ultrasonic object detection and communication for
+                    augmented reality,"
+                    <em>Applied Sciences</em>, 9(10), 2004, May 2019.
+                    <a href="https://www.mdpi.com/2076-3417/9/10/2004" target="_blank" class="paper-link"><i
+                            class="fas fa-external-link-alt"></i></a>
+                </li>
+                <li>
+                    K. M. Jeon, S. Y. Park, <strong>C. J. Chun</strong>, N. I. Park, and H. K. Kim<sup>*</sup>,
+                    "Multi-band approach to deep learning-based artificial stereo extension,"
+                    <em>ETRI Journal</em>, vol. 39, no. 3, June 2017.
+                    <a href="https://onlinelibrary.wiley.com/doi/full/10.4218/etrij.17.0116.0773" target="_blank"
+                        class="paper-link"><i class="fas fa-external-link-alt"></i></a>
+                </li>
+            </ol>
+        </div>
+
+        <div class="glass-card">
+            <h2 class="card-title"><i class="fas fa-users"></i> International Conferences</h2>
+            <ol reversed class="pub-list">
+                <li>
+                    E. Kim, Y. Pak, H. Park, and <strong>C. Chun<sup>*</sup></strong>,
+                    "Conditional normalizing flow for acoustic scene generation,"
+                    in <em>Proc. International Conference on Maritime IT Convergence (ICMIC)</em>, Cebu, Philippines,
+                    Aug. 2025.
+                    <a href="http://icmic-conf.org" target="_blank" class="paper-link"><i
+                            class="fas fa-external-link-alt"></i></a>
+                </li>
+                <li>
+                    G. W. Lee, H. K. Kim<sup>*</sup>, and <strong>C. J. Chun</strong>,
+                    "Knowledge distillation-based personalized HRTF estimation toward real world,"
+                    in <em>Proc. Audio Engineering Society (AES) Convention</em>, New York, NY, Oct. 2023.
+                    <a href="https://www.aes.org/e-lib/browse.cfm?elib=22270" target="_blank" class="paper-link"><i
+                            class="fas fa-external-link-alt"></i></a>
+                </li>
+                <li>
+                    N. Kim, <strong>C. Chun</strong>, S. J. Park, S. Yun, and Y. H. Sung<sup>*</sup>,
+                    "Fault diagnosis method using convolutional recurrent neural network for rotating machine,"
+                    in <em>Proc. International Conference on Information and Communication Technology Convergence
+                        (ICTC)</em>, Jeju, Korea, Oct. 2023.
+                    <a href="https://ieeexplore.ieee.org/abstract/document/10393124" target="_blank"
+                        class="paper-link"><i class="fas fa-external-link-alt"></i></a>
+                </li>
+                <li>
+                    C.-W. Bang, N. K. Kim, and <strong>C. Chun<sup>*</sup></strong>,
+                    "High-quality foley sound synthesis using Monte Carlo dropout,"
+                    in <em>Proc. International Conference on Maritime IT Convergence (ICMIC)</em>, Jeju, Korea, Aug.
+                    2023.
+                    <a href="http://icmic-conf.org" target="_blank" class="paper-link"><i
+                            class="fas fa-external-link-alt"></i></a>
+                </li>
+                <li>
+                    D. Kim, W. Choi, <strong>C. Chun</strong>, Y. Kim, Y. Kim<sup>*</sup>,
+                    "Interference cancellation in RIS-assisted FD relay transmission,"
+                    in <em>Proc. International Conference on Ubiquitous and Future Networks (ICUFN)</em>, Paris, France,
+                    July 2023.
+                    <a href="https://ieeexplore.ieee.org/abstract/document/10201158" target="_blank"
+                        class="paper-link"><i class="fas fa-external-link-alt"></i></a>
+                </li>
+                <li>
+                    <strong>C. Chun</strong>, Y. H. Lee, G. W. Lee, M. Jeon, and H. K. Kim<sup>*</sup>,
+                    "Non-parallel voice conversion using cycle-consistent adversarial networks with self-supervised
+                    representations,"
+                    in <em>Proc. IEEE Consumer Communications and Networking Conference (CCNC)</em>, Las Vegas, LV, Jan.
+                    2023.
+                    <a href="https://ieeexplore.ieee.org/document/10060510" target="_blank" class="paper-link"><i
+                            class="fas fa-external-link-alt"></i></a>
+                </li>
+                <li>
+                    G. W. Lee, H. K. Kim<sup>*</sup>, <strong>C. J. Chun</strong>, and K. M. Jeon,
+                    "Personalized HRTF estimation based on one-to-many neural network architecture,"
+                    in <em>Proc. Audio Engineering Society (AES) Convention</em>, New York, NY, Oct. 2022.
+                    <a href="https://www.aes.org/e-lib/browse.cfm?elib=21907" target="_blank" class="paper-link"><i
+                            class="fas fa-external-link-alt"></i></a>
+                </li>
+                <li>
+                    C. Go, W. Choi, and <strong>C. Chun<sup>*</sup></strong>,
+                    "Voice spoofing countermeasure using residual convolutional neural networks and self-attention,"
+                    in <em>Proc. International Conference on Maritime IT Convergence (ICMIC)</em>, Jeju, Korea, Sep.
+                    2022.
+                    <a href="http://icmic-conf.org" target="_blank" class="paper-link"><i
+                            class="fas fa-external-link-alt"></i></a>
+                </li>
+                <li>
+                    <strong>C. Chun</strong>, K. M. Jeon, C. Lee, B. Lee, and W. Choi<sup>*</sup>,
+                    "Comparison of CNN-based speech dereverberation using Neural vocoder,"
+                    in <em>Proc. International Conference on Artificial Intelligence in Information and Communication
+                        (ICAIIC)</em>, Jeju, Korea, Apr. 2021.
+                    <a href="https://ieeexplore.ieee.org/document/9415259" target="_blank" class="paper-link"><i
+                            class="fas fa-external-link-alt"></i></a>
+                </li>
+                <li>
+                    K. M. Jeon, <strong>C. Chun</strong>, G. Kim, C. Leem, B. Kim, and W. Choi<sup>*</sup>,
+                    "Lightweight U-Net based monaural speech source separation for edge computing device,"
+                    in <em>Proc. IEEE International Conference on Consumer Electronics (ICCE)</em>, Las Vegas, LV, Jan.
+                    2020.
+                    <a href="https://ieeexplore.ieee.org/document/9043051" target="_blank" class="paper-link"><i
+                            class="fas fa-external-link-alt"></i></a>
+                </li>
+                <li>
+                    <strong>C. Chun</strong>, K. M. Jeon, T. Kim, and W. Choi<sup>*</sup>,
+                    "Drone noise reduction using deep convolutional autoencoder for UAV acoustic sensor networks,"
+                    in <em>Proc. IEEE International Conference on Mobile Ad Hoc and Sensor Systems Workshops
+                        (MASSW)</em>, Monterey, CA, Nov. 2019.
+                    <a href="https://ieeexplore.ieee.org/document/9059492" target="_blank" class="paper-link"><i
+                            class="fas fa-external-link-alt"></i></a>
+                </li>
+                <li>
+                    S. Ryu<sup>*</sup>, S. Shim, <strong>C. Chun</strong>, S.-I. Choi, and D. Seo,
+                    "Image processing based automatic road damage detection system for autonomous car,"
+                    in <em>Proc. ITS World Congress</em>, Copenhagen, Denmark, Sep. 2018.
+                </li>
+                <li>
+                    G. W. Lee, J. M. Moon, <strong>C. J. Chun</strong>, and H. K. Kim<sup>*</sup>,
+                    "On the use of bottleneck features of CNN auto-encoder for personalized HRTFs,"
+                    in <em>Proc. Audio Engineering Society (AES) Convention</em>, Milan, Italy, May 2018.
+                    <a href="https://www.aes.org/e-lib/browse.cfm?elib=19419" target="_blank" class="paper-link"><i
+                            class="fas fa-external-link-alt"></i></a>
+                </li>
+                <li>
+                    <strong>C. Chun</strong>, J. Kim, and S. Ryu<sup>*</sup>,
+                    "A deep convolutional encoder-decoder architecture for automatic pothole segmentation,"
+                    in <em>Proc. US-Korea Conference on Science, Technology and Entrepreneurship (UKC)</em>, New York,
+                    NY, Aug. 2018.
+                </li>
+                <li>
+                    <strong>C. J. Chun</strong>, J. M. Moon, G. W. Lee, N. K. Kim, and H. K. Kim<sup>*</sup>,
+                    "Deep neural network based HRTF personalization using anthropometric measurements,"
+                    in <em>Proc. Audio Engineering Society (AES) Convention</em>, New York, NY, Oct. 2017.
+                    <a href="https://www.aes.org/e-lib/browse.cfm?elib=19257" target="_blank" class="paper-link"><i
+                            class="fas fa-external-link-alt"></i></a>
+                </li>
+                <li>
+                    K. M. Jeon, <strong>C. J. Chun</strong>, H. K. Kim<sup>*</sup>, and M. J. Lee,
+                    "Application of low-frequency ultrasonic communication to audio marker for augmented reality,"
+                    in <em>Proc. IEEE International Conference on Consumer Electronics (ICCE)</em>, Las Vegas, LV, Jan.
+                    2017.
+                    <a href="https://ieeexplore.ieee.org/document/7889260" target="_blank" class="paper-link"><i
+                            class="fas fa-external-link-alt"></i></a>
+                </li>
+            </ol>
+        </div>
+
+        <div class="glass-card">
+            <h2 class="card-title"><i class="fas fa-book"></i> Domestic Journals</h2>
+            <ol reversed class="pub-list">
+                <li>
+                    김나연, <strong>전찬준</strong>, 김홍국<sup>*</sup>,
+                    "신경망 기반 분포 외 검출기를 활용한 수중 음향 환경의 이상 음원 탐지 방법,"
+                    <em>한국통신학회 논문지</em>, vol. 50, no. 12, Dec. 2025.
+                    <a href="https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART003274355"
+                        target="_blank" class="paper-link"><i class="fas fa-external-link-alt"></i></a>
+                </li>
+                <li>
+                    <strong>전찬준</strong>, 고창환, 전옥엽, 박남인<sup>*</sup>,
+                    "제한대역 음성에서의 화자 인식을 위한 다중 특징 융합 방법,"
+                    <em>한국차세대컴퓨팅학회 논문지</em>, vol. 21, no. 5, Oct. 2025.
+                    <a href="https://www.kci.go.kr/kciportal/landing/article.kci?arti_id=ART003262813" target="_blank"
+                        class="paper-link"><i class="fas fa-external-link-alt"></i></a>
+                </li>
+                <li>
+                    김나연, <strong>전찬준</strong>, 김홍국<sup>*</sup>,
+                    "수중 음향 환경에서 몬테카를로 드롭아웃 및 가우시안 혼합 모델을 활용한 이상 음원 탐지,"
+                    <em>한국통신학회 논문지</em>, vol. 49, no. 12, Dec. 2024.
+                    <a href="https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART003145694"
+                        target="_blank" class="paper-link"><i class="fas fa-external-link-alt"></i></a>
+                </li>
+                <li>
+                    유승연, 신영서, 방채운, <strong>전찬준<sup>*</sup></strong>,
+                    "통계 및 이미지 데이터를 활용한 가짜 SNS 계정 식별 기술,"
+                    <em>스마트미디어저널</em>, vol. 11, no. 1, Feb. 2022.
+                    <a href="https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART002819404"
+                        target="_blank" class="paper-link"><i class="fas fa-external-link-alt"></i></a>
+                </li>
+                <li>
+                    김강민, 김판구, <strong>전찬준<sup>*</sup></strong>,
+                    "Deep Metric Learning을 활용한 합성곱 신경망 기반의 피부질환 분류 기술,"
+                    <em>스마트미디어저널</em>, vol. 10, no. 4, Dec. 2021.
+                    <a href="https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART002800190"
+                        target="_blank" class="paper-link"><i class="fas fa-external-link-alt"></i></a>
+                </li>
+                <li>
+                    오경민, 홍요섭, 백건영, <strong>전찬준<sup>*</sup></strong>,
+                    "YOLO 기반의 광학 음악 인식 기술 및 가상현실 콘텐츠 제작 방법,"
+                    <em>스마트미디어저널</em>, vol. 10, no. 4, Dec. 2021.
+                    <a href="https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART002800222"
+                        target="_blank" class="paper-link"><i class="fas fa-external-link-alt"></i></a>
+                </li>
+                <li>
+                    <strong>전찬준</strong>, 서명배, 이동윤<sup>*</sup>,
+                    "가상건설 활성화를 위한 소음 시뮬레이션 기술의 구현,"
+                    <em>한국차세대컴퓨터학회 논문지</em>, vol. 17, no. 6, Dec. 2021.
+                    <a href="https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART002799287"
+                        target="_blank" class="paper-link"><i class="fas fa-external-link-alt"></i></a>
+                </li>
+                <li>
+                    <strong>전찬준</strong>, 최우열<sup>*</sup>,
+                    "CNN 기반의 음성 잔향 제거 기술에서 음성 품질 고도화를 위한 다양한 뉴럴 보코더의 성능 비교,"
+                    <em>한국법과학회지</em>, vol. 22, no. 1, May 2021.
+                    <a href="https://m.earticle.net/Article/A394796" target="_blank" class="paper-link"><i
+                            class="fas fa-external-link-alt"></i></a>
+                </li>
+                <li>
+                    <strong>전찬준</strong>, 류승기<sup>*</sup>,
+                    "수도 레이블을 활용한 준지도 학습 기반의 도로노면 파손 탐지,"
+                    <em>한국ITS학회논문지</em>, vol. 18, no. 4, Aug. 2019.
+                    <a href="https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART002499051"
+                        target="_blank" class="paper-link"><i class="fas fa-external-link-alt"></i></a>
+                </li>
+                <li>
+                    <strong>전찬준</strong>, 최창호, 조진우<sup>*</sup>,
+                    "미시추 구간의 지반 층상정보 예측을 위한 정규 크리깅 및 인공신경망 기법의 비교,"
+                    <em>한국지반공학회지</em>, vol. 20, no. 3, Mar. 2019.
+                    <a href="https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART002443063"
+                        target="_blank" class="paper-link"><i class="fas fa-external-link-alt"></i></a>
+                </li>
+                <li>
+                    <strong>전찬준</strong>, 심승보, 강성모, 류승기<sup>*</sup>,
+                    "완전 합성곱 신경망을 활용한 자동 포트홀 탐지 기술의 개발 및 평가,"
+                    <em>한국ITS학회논문지</em>, vol. 17, no. 5, Oct. 2018.
+                    <a href="https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART002400982"
+                        target="_blank" class="paper-link"><i class="fas fa-external-link-alt"></i></a>
+                </li>
+            </ol>
+        </div>
+
+    </main>
+
+    <footer>
+        <div class="container text-center">
+            <p class="mb-0">© 2026 Advanced Multimedia Computing Lab. All rights reserved.</p>
+            <small class="text-secondary">Designed by AMCL</small>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research - AMCL</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Noto+Sans+KR:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icons@6.6.6/css/flag-icons.min.css">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-dark: #0f172a;
+            --card-bg: #1e293b;
+            --accent-color: #6366f1;
+            --text-main: #f8fafc;
+            --text-sub: #94a3b8;
+        }
+
+        body {
+            font-family: 'Inter', 'Noto Sans KR', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navbar */
+        .navbar {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 1rem 0;
+        }
+
+        .navbar-brand img {
+            height: 45px;
+            transition: transform 0.3s;
+        }
+
+        .navbar-brand:hover img {
+            transform: scale(1.05);
+        }
+
+        .nav-link {
+            color: var(--text-sub) !important;
+            font-weight: 500;
+            margin-left: 1.5rem;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--text-main) !important;
+        }
+
+        .lang-dropdown-menu {
+            background-color: rgba(30, 41, 59, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            min-width: 120px;
+        }
+
+        .lang-dropdown-item {
+            color: var(--text-sub);
+            padding: 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            transition: all 0.2s;
+        }
+
+        .lang-dropdown-item:hover {
+            background-color: rgba(99, 102, 241, 0.1);
+            color: white;
+        }
+
+        .fi {
+            font-size: 1.1em;
+            line-height: 1em;
+        }
+
+        /* Page Header */
+        .page-header {
+            padding: 4rem 0 2rem;
+            text-align: center;
+            background: radial-gradient(circle at top center, rgba(99, 102, 241, 0.1), transparent 60%);
+        }
+
+        .page-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #fff 0%, #818cf8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        /* Glass Card */
+        .glass-card {
+            background: rgba(30, 41, 59, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 1rem;
+            padding: 2.5rem;
+            height: 100%;
+            margin-bottom: 3rem;
+            transition: transform 0.3s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(99, 102, 241, 0.3);
+        }
+
+        /* Research Specific - [Updated Image Container] */
+        .research-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .research-desc {
+            color: var(--text-sub);
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+
+        .research-img-wrapper {
+            width: 100%;
+            border-radius: 0.75rem;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+
+            /* [NEW] White Background & Padding */
+            background-color: white;
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .research-img {
+            width: 100%;
+            height: auto;
+            transition: transform 0.4s ease;
+            display: block;
+            border-radius: 0.5rem;
+        }
+
+        .glass-card:hover .research-img {
+            transform: scale(1.02);
+        }
+
+        /* Tech Tags */
+        .tech-badge {
+            display: inline-block;
+            background: rgba(99, 102, 241, 0.15);
+            color: var(--accent-color);
+            padding: 0.35rem 0.8rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+            border: 1px solid rgba(99, 102, 241, 0.2);
+        }
+
+        /* Buttons */
+        .btn-action {
+            display: inline-flex;
+            align-items: center;
+            height: 40px;
+            padding: 0 1.2rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s;
+            margin-right: 0.5rem;
+        }
+
+        .btn-demo {
+            background: var(--accent-color);
+            color: white;
+            border: none;
+        }
+
+        .btn-demo:hover {
+            background: #4f46e5;
+            color: white;
+        }
+
+        .btn-github {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+        }
+
+        .btn-github:hover {
+            background: white;
+            color: black;
+        }
+
+        footer {
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 3rem 0;
+            margin-top: 5rem;
+            color: var(--text-sub);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index_en.html">
+                <img src="images/logo2.png" alt="AMCL Logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav align-items-lg-center">
+                    <li class="nav-item"><a class="nav-link" href="index_en.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="people_en.html">People</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="research_en.html">Research</a></li>
+                    <li class="nav-item"><a class="nav-link" href="publication_en.html">Publication</a></li>
+                    <li class="nav-item"><a class="nav-link" href="news_en.html">News</a></li>
+
+                    <li class="nav-item dropdown ms-lg-3">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            <span class="fi fi-us me-2"></span> EN
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end lang-dropdown-menu">
+                            <li><a class="dropdown-item lang-dropdown-item" href="research.html"><span
+                                        class="fi fi-kr me-2"></span> Korean</a></li>
+                            <li><a class="dropdown-item lang-dropdown-item" href="research_en.html"><span
+                                        class="fi fi-us me-2"></span> English</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="page-header container">
+        <h1 class="page-title">Research Areas</h1>
+        <p class="text-secondary">Core Technologies & Key Projects</p>
+    </header>
+
+    <main class="container">
+
+        <section class="glass-card">
+            <div class="row align-items-center">
+                <div class="col-lg-5 mb-4 mb-lg-0">
+                    <div class="research-img-wrapper">
+                        <img src="images/perturbation_autovc.png" alt="Perturbation AUTOVC" class="research-img">
+                    </div>
+                </div>
+                <div class="col-lg-7 ps-lg-5">
+                    <h2 class="research-title">Zero-shot Voice Conversion</h2>
+                    <div class="mb-3">
+                        <span class="tech-badge">Information Perturbation</span>
+                        <span class="tech-badge">Autoencoder</span>
+                        <span class="tech-badge">Disentanglement</span>
+                    </div>
+                    <p class="research-desc">
+                        A technique for effectively disentangling linguistic and speaker information in non-parallel
+                        data environments using Information Perturbation-based Autoencoders.
+                        It overcomes the limitations of traditional bottleneck methods to maximize speaker similarity
+                        without compromising audio quality, and we are expanding research into high-fidelity generation
+                        models combined with Diffusion models.
+                    </p>
+                    <div>
+                        <a href="https://www.amclab.kr/demo/perturbation_autovc/" target="_blank"
+                            class="btn-action btn-demo"><i class="fas fa-play-circle me-2"></i>Demo</a>
+                        <a href="https://github.com/cjchun3616/perturbation_autovc/" target="_blank"
+                            class="btn-action btn-github"><i class="fab fa-github me-2"></i>GitHub</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="glass-card">
+            <div class="row align-items-center">
+                <div class="col-lg-5 mb-4 mb-lg-0 order-lg-2">
+                    <div class="research-img-wrapper">
+                        <img src="images/zeroshot_gradtts.png" alt="Zero-shot Grad-TTS" class="research-img">
+                    </div>
+                </div>
+                <div class="col-lg-7 pe-lg-5 order-lg-1">
+                    <h2 class="research-title">Zero-shot Speech Synthesis</h2>
+                    <div class="mb-3">
+                        <span class="tech-badge">Score-based Diffusion</span>
+                        <span class="tech-badge">Grad-TTS</span>
+                        <span class="tech-badge">Multi-Speaker</span>
+                    </div>
+                    <p class="research-desc">
+                        A Zero-shot Multi-Speaker TTS technology based on improved Grad-TTS (Diffusion probabilistic
+                        models), capable of instant speech generation for unseen speakers.
+                        We aim to achieve both high-speed sampling and natural prosody generation by integrating
+                        Transformer-based text encoders with Score-based Decoders.
+                    </p>
+                    <div>
+                        <a href="https://www.amclab.kr/demo/zero_shot_gradtts/" target="_blank"
+                            class="btn-action btn-demo"><i class="fas fa-play-circle me-2"></i>Demo</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="glass-card">
+            <div class="row align-items-center">
+                <div class="col-lg-5 mb-4 mb-lg-0">
+                    <div class="research-img-wrapper">
+                        <img src="images/cssp.png" alt="Speaker Recognition" class="research-img">
+                    </div>
+                </div>
+                <div class="col-lg-7 ps-lg-5">
+                    <h2 class="research-title">Speaker Recognition</h2>
+                    <div class="mb-3">
+                        <span class="tech-badge">Contrastive Learning</span>
+                        <span class="tech-badge">Hard Negative Sampling</span>
+                        <span class="tech-badge">CLIP Framework</span>
+                    </div>
+                    <p class="research-desc">
+                        A robust speaker recognition framework that enhances identification performance between similar
+                        speakers by combining Contrastive Learning and Hard Negative Sampling.
+                        By applying CLIP's One-to-Many relationship learning technique to the audio domain, we secure
+                        state-of-the-art representation performance in large-scale datasets like VoxCeleb.
+                    </p>
+                    <div>
+                        <a href="https://github.com/CJchanghwan/speaker_recognition_framework/" target="_blank"
+                            class="btn-action btn-github"><i class="fab fa-github me-2"></i>GitHub</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container text-center">
+            <p class="mb-0">© 2026 Advanced Multimedia Computing Lab. All rights reserved.</p>
+            <small class="text-secondary">Designed by AMCL</small>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

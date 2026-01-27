@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko" data-bs-theme="dark">
+<html lang="en" data-bs-theme="dark">
 
 <head>
     <meta charset="UTF-8">
@@ -20,15 +20,10 @@
     <style>
         :root {
             --bg-dark: #0f172a;
-            /* 짙은 네이비 배경 */
             --card-bg: #1e293b;
-            /* 카드 배경 */
             --accent-color: #6366f1;
-            /* 포인트 컬러 (Indigo) */
             --text-main: #f8fafc;
-            /* 메인 텍스트 */
             --text-sub: #94a3b8;
-            /* 서브 텍스트 */
         }
 
         body {
@@ -39,7 +34,7 @@
             overflow-x: hidden;
         }
 
-        /* 네비게이션 바 커스텀 */
+        /* Navbar Custom */
         .navbar {
             background: rgba(15, 23, 42, 0.8);
             backdrop-filter: blur(10px);
@@ -62,7 +57,6 @@
             margin-left: 1.5rem;
             transition: color 0.3s;
             display: flex;
-            /* 아이콘 정렬을 위해 */
             align-items: center;
         }
 
@@ -71,7 +65,7 @@
             color: var(--text-main) !important;
         }
 
-        /* 언어 선택 드롭다운 스타일 커스텀 */
+        /* Language Dropdown Custom */
         .lang-dropdown-menu {
             background-color: rgba(30, 41, 59, 0.95);
             backdrop-filter: blur(10px);
@@ -94,11 +88,10 @@
 
         .fi {
             font-size: 1.1em;
-            /* 국기 크기 조절 */
             line-height: 1em;
         }
 
-        /* Hero 섹션 (대문) */
+        /* Hero Section */
         .hero-section {
             padding: 5rem 0 4rem;
             text-align: center;
@@ -124,7 +117,7 @@
             white-space: nowrap;
         }
 
-        /* 모바일 대응 */
+        /* Mobile Response */
         @media (max-width: 992px) {
             .hero-subtitle {
                 white-space: normal;
@@ -135,14 +128,12 @@
                 font-size: 2.5rem;
             }
 
-            /* 모바일에서 언어 선택기 여백 조정 */
             .nav-item.dropdown {
                 margin-left: 1.5rem;
                 margin-top: 0.5rem;
             }
         }
 
-        /* Hero 이미지 컨테이너 */
         .hero-img-container {
             position: relative;
             border-radius: 1.5rem;
@@ -160,7 +151,7 @@
             transform: scale(1.02);
         }
 
-        /* 카드 디자인 (유리 질감) */
+        /* Glass Card Design */
         .glass-card {
             background: rgba(30, 41, 59, 0.7);
             border: 1px solid rgba(255, 255, 255, 0.05);
@@ -194,7 +185,7 @@
             border-radius: 2px;
         }
 
-        /* 리스트 스타일 커스텀 */
+        /* Feature List */
         .feature-list {
             list-style: none;
             padding: 0;
@@ -241,7 +232,7 @@
 
     <nav class="navbar navbar-expand-lg sticky-top">
         <div class="container">
-            <a class="navbar-brand" href="index">
+            <a class="navbar-brand" href="index_en.html">
                 <img src="images/logo2.png" alt="AMCL Logo">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -249,16 +240,16 @@
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                 <ul class="navbar-nav align-items-lg-center">
-                    <li class="nav-item"><a class="nav-link active" href="index">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="people">People</a></li>
-                    <li class="nav-item"><a class="nav-link" href="research">Research</a></li>
-                    <li class="nav-item"><a class="nav-link" href="publication">Publication</a></li>
-                    <li class="nav-item"><a class="nav-link" href="news">News</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="index_en.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="people_en.html">People</a></li>
+                    <li class="nav-item"><a class="nav-link" href="research_en.html">Research</a></li>
+                    <li class="nav-item"><a class="nav-link" href="publication_en.html">Publication</a></li>
+                    <li class="nav-item"><a class="nav-link" href="news_en.html">News</a></li>
 
                     <li class="nav-item dropdown ms-lg-3">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                             aria-expanded="false">
-                            <span class="fi fi-kr me-2"></span> KO
+                            <span class="fi fi-us me-2"></span> EN
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end lang-dropdown-menu">
                             <li>
@@ -323,17 +314,18 @@
                     <div class="mb-4">
                         <h5 class="text-white mb-3"><i class="fas fa-user-tie me-2"
                                 style="color:var(--accent-color)"></i>Advisor</h5>
-                        <p class="text-secondary mb-1"><strong>전 찬 준 (Chanjun Chun, Ph.D)</strong></p>
+                        <p class="text-secondary mb-1"><strong>Chanjun Chun, Ph.D</strong></p>
                         <p class="small text-secondary">
-                            조선대학교 IT융합대학 컴퓨터공학과<br>
-                            멀티미디어컴퓨팅 연구실 (10120호 & 10122호)
+                            Dept. of Computer Engineering, Chosun University<br>
+                            Advanced Multimedia Computing Lab (Room 10120 & 10122)
                         </p>
                     </div>
 
                     <div class="alert alert-dark border-0 bg-opacity-10 text-center py-4" role="alert"
                         style="background: rgba(99,102,241,0.1);">
                         <h5 class="fw-bold text-white mb-1">We are Hiring! 🚀</h5>
-                        <p class="small text-secondary mb-0">열정적인 학부 연구생 및 대학원생을 모집합니다.</p>
+                        <p class="small text-secondary mb-0">We are recruiting motivated undergraduate and graduate
+                            students.</p>
                     </div>
                 </div>
             </div>
@@ -344,19 +336,19 @@
                     <ul class="feature-list">
                         <li>
                             <strong class="text-white">Sound Event Localization & Detection</strong>
-                            <br><small>음향 이벤트 위치 추정 및 탐지 기술</small>
+                            <br><small>Sound event localization and detection technology</small>
                         </li>
                         <li>
                             <strong class="text-white">Voice Conversion & Synthesis</strong>
-                            <br><small>고품질 음색 변환 및 음성 합성 모델</small>
+                            <br><small>High-quality voice conversion and speech synthesis models</small>
                         </li>
                         <li>
                             <strong class="text-white">Speaker Recognition</strong>
-                            <br><small>화자 식별 및 검증 보안 시스템</small>
+                            <br><small>Speaker identification and verification security systems</small>
                         </li>
                         <li>
                             <strong class="text-white">AI-based Audio Analysis</strong>
-                            <br><small>딥러닝 기반 오디오 신호 처리 및 분석</small>
+                            <br><small>Deep learning-based audio signal processing and analysis</small>
                         </li>
                     </ul>
                 </div>
@@ -374,7 +366,9 @@
                             <i class="fas fa-map-marker-alt mt-1 me-4 fa-lg" style="color:var(--accent-color)"></i>
                             <div>
                                 <strong class="text-white d-block mb-1">Address</strong>
-                                (61452) 광주광역시 동구 조선대5길 65,<br>조선대학교 IT융합대학 10120호 & 10122호
+                                Room 10120 & 10122, College of IT Convergence,<br>
+                                Chosun University, 65 Chosundae-5gil,<br>
+                                Dong-gu, Gwangju, 61452, Republic of Korea
                             </div>
                         </li>
                         <li class="mb-4 d-flex">
